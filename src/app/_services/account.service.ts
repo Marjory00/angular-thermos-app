@@ -12,6 +12,9 @@ const baseUrl = `${environment.apiUrl}/accounts`;
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
+    logout() {
+      throw new Error('Method not implemented.');
+    }
     private accountSubject: BehaviorSubject<Account>;
     public account: Observable<Account>;
 
@@ -31,7 +34,7 @@ export class AccountService {
 
     login(email: string, password: string) {
         return this.http.post<any>(`${baseUrl}/authenticate`, {
-            
+
         })
     }
 
