@@ -1,5 +1,15 @@
 # Thermos
 
+# User Registration and Login 
+Part-1
+
+# About Project
+Simple user registration, login and user management (CRUD) application with Angular 15. The ap runs with a fake backend by default to enable it to run completely in the browser without a real backend api (backend-less).
+
+## Comments
+To switch to a real api you just have to remove or comment out the line below the comment // provider used to create fake backend located in the app module (/src/app/app.module.ts). 
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.0.
 
 ## Development server
