@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AccountService } from './_services';
+import { AccountService } from './_services/account.service';
 import { Account, Role } from './_models';
 
 
@@ -11,7 +11,14 @@ import { Account, Role } from './_models';
 
 export class AppComponent {
   title = 'thermos';
-  account: Account;
+  account: Account | undefined;
 
+constructor(private accountService: AccountService) {
+  this.accountService.account.subscribe((x: Account | undefined) => this.account = x);
+}
+
+logout() {
+  this.accountService.logout();
+}
 
 }
