@@ -7,11 +7,13 @@ import { map, finalize } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Account } from '../_models';
 
+
 const baseUrl = `${environment.apiUrl}/accounts`;
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
     private accountSubject: BehaviorSubject<Account>;
+    
     public account: Observable<Account>;
     userValue: any;
 
@@ -30,7 +32,8 @@ export class AccountService {
     }
 
     login(email: string, password: string) {
-        return this.http.post<any>(`${baseUrl}/authenticate`, { email, password }, { withCredentials: true })
+        return this.http.post<any>(`${baseUrl}/authenticate`,
+         { email, password }, { withCredentials: true })
             .pipe(map(account => {
                 this.accountSubject.next(account);
                 this.startRefreshTokenTimer();
@@ -39,7 +42,8 @@ export class AccountService {
     }
 
     logout() {
-        this.http.post<any>(`${baseUrl}/revoke-token`, {}, { withCredentials: true }).subscribe();
+        this.http.post<any>(`${baseUrl}/revoke-token`, {}, 
+        { withCredentials: true }).subscribe();
         this.stopRefreshTokenTimer();
         this.accountSubject.next(this.userValue);
         this.router.navigate(['/account/login']);
@@ -108,21 +112,22 @@ export class AccountService {
             }));
     }
 
-    // helper methods
+   
+     // helper methods
 
-    private refreshTokenTimeout: string | number | NodeJS.Timeout | undefined;
+     private refreshTokenTimeout: number | undefined;
 
-    private startRefreshTokenTimer() {
+     private startRefreshTokenTimer() {
         // parse json object from base64 encoded jwt token
         const jwtToken = JSON.parse(atob(this.userValue.jwtToken.split('.')[1]));
 
-        // set a timeout to refresh the token a minute before it expires
-        const expires = new Date(jwtToken.exp * 1000);
-        const timeout = expires.getTime() - Date.now() - (60 * 1000);
-        this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
-    }
-
-    private stopRefreshTokenTimer() {
-        clearTimeout(this.refreshTokenTimeout);
-    }
-}
+         // set a timeout to refresh the token a minute before it expires
+         const expires = new Date(jwtToken.exp * 1000);
+         const timeout = expires.getTime() - Date.now() - (60 * 1000);
+         this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
+     }
+ 
+     private stopRefreshTokenTimer() {
+         clearTimeout(this.refreshTokenTimeout);
+     }
+ }
