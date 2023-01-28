@@ -10,7 +10,7 @@ import { Account, Role } from './_models';
 })
 
 export class AppComponent {
-  title = 'thermos';
+  title = 'angular-thermos-app';
   account: Account | undefined;
 
 constructor(private accountService: AccountService) {

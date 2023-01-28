@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "thermos": {
+    "angular-thermos-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/thermos",
+            "outputPath": "dist/angular-thermos-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "thermos:build:production"
+              "browserTarget": "angular-thermos-app:build:production"
             },
             "development": {
-              "browserTarget": "thermos:build:development"
+              "browserTarget": "angular-thermos-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "thermos:build"
+            "browserTarget": "angular-thermos-app:build"
           }
         },
         "test": {
