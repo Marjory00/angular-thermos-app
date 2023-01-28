@@ -1,6 +1,6 @@
 export class Alert {
     id: string | undefined;
-    type: AlertType | undefined;
+    type: AlertType = 0;
     message: string | undefined;
     autoClose: boolean | undefined;
     keepAfterRouteChange: boolean | undefined;

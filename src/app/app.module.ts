@@ -13,6 +13,13 @@ import {  fakeBackendProvider } from 'src/app/_components/_helpers';
 import { JwtInterceptor, ErrorInterceptor, appInitializer } from 'src/app/_components/_helpers';
 import { AccountService } from './_services/account.service';
 import { AlertComponent } from './_components/alert/alert.component';
+import { AccountModule } from './account/account/account.module';
+import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
+import { LayoutComponent } from './account/layout/layout.component';
+import { LoginComponent } from './account/login/login.component';
+import { RegisterComponent } from './account/register/register.component';
+import { ResetComponent } from './account/reset/reset.component';
+import { VerifyComponent } from './account/verify/verify.component';
 
 
 
@@ -20,13 +27,20 @@ import { AlertComponent } from './_components/alert/alert.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    AlertComponent
+    AlertComponent,
+    ForgotPasswordComponent,
+    LayoutComponent,
+    LoginComponent,
+    RegisterComponent,
+    ResetComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AccountModule,
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer,

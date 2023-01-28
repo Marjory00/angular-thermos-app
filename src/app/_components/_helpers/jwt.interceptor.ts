@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { AccountService } from 'src/app/_services/account.service';
-import { request } from 'https';
+
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {

@@ -6,7 +6,9 @@ import { Alert, AlertType } from 'src/app/_models';
 import { AlertService } from 'src/app/_services/alert.service';
 
 
-@Component({ selector: 'alert', templateUrl: 'alert.component.html' })
+@Component({ selector: 'alert', 
+templateUrl: 'alert.component.html' })
+
 export class AlertComponent implements OnInit, OnDestroy {
     @Input() id = 'default-alert';
     @Input() fade = true;
@@ -15,8 +17,9 @@ export class AlertComponent implements OnInit, OnDestroy {
     alertSubscription: Subscription = new Subscription;
     routeSubscription: Subscription = new Subscription;
     
-
-    constructor(private router: Router, private alertService: AlertService) { }
+    
+    constructor(private router: Router, 
+        private alertService: AlertService) { }
 
     ngOnInit() {
         // subscribe to new alert notifications
@@ -24,13 +27,16 @@ export class AlertComponent implements OnInit, OnDestroy {
             .subscribe(alert => {
                 // clear alerts when an empty alert is received
                 if (!alert.message) {
-                    // filter out alerts without 'keepAfterRouteChange' flag
-                    this.alerts = this.alerts.filter(x => x.keepAfterRouteChange);
+            /* filter out alerts without 
+             'keepAfterRouteChange' flag */
+                this.alerts = this.alerts.filter(x => x
+                .keepAfterRouteChange);
 
-                    // remove 'keepAfterRouteChange' flag on the rest
-                    this.alerts.forEach(x => delete x.keepAfterRouteChange);
-                    return;
-                }
+            // remove 'keepAfterRouteChange' flag on the rest
+            this.alerts.forEach(x => delete x
+                .keepAfterRouteChange);
+            return;
+            }
 
                 // add alert to array
                 this.alerts.push(alert);
@@ -61,6 +67,7 @@ export class AlertComponent implements OnInit, OnDestroy {
 
         if (this.fade) {
             // fade out alert
+         
             alert.fade = true;
 
             // remove alert after faded out
