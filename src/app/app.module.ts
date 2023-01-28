@@ -8,9 +8,9 @@ import { HomeComponent } from './home/home.component';
 
 
 // used to create fake backend
-import {  fakeBackendProvider } from './_helpers';
+import {  fakeBackendProvider } from 'src/app/_helpers';
 
-import { JwtInterceptor, ErrorInterceptor, appInitializer } from'./_helpers';
+import { JwtInterceptor, ErrorInterceptor, appInitializer } from 'src/app/_helpers';
 import { AccountService } from './_services/account.service';
 import { AlertComponent } from './_components/alert/alert.component';
 

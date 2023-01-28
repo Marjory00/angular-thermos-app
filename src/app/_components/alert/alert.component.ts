@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { Alert, AlertType } from '../_models';
-import { AlertService } from '../_services';
+import { Alert, AlertType } from 'src/app/_models';
+import { AlertService } from 'src/app/_services/alert.service';
+
 
 @Component({ selector: 'alert', templateUrl: 'alert.component.html' })
 export class AlertComponent implements OnInit, OnDestroy {
@@ -11,8 +12,9 @@ export class AlertComponent implements OnInit, OnDestroy {
     @Input() fade = true;
 
     alerts: Alert[] = [];
-    alertSubscription: Subscription;
-    routeSubscription: Subscription;
+    alertSubscription: Subscription = new Subscription;
+    routeSubscription: Subscription = new Subscription;
+    
 
     constructor(private router: Router, private alertService: AlertService) { }
 

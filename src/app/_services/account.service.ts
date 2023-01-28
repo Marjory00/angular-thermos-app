@@ -13,14 +13,15 @@ const baseUrl = `${environment.apiUrl}/accounts`;
 export class AccountService {
     private accountSubject: BehaviorSubject<Account>;
     public account: Observable<Account>;
+    userValue: any;
 
     constructor(
         private router: Router,
         private http: HttpClient,
         
     ) {
-        
-        this.accountSubject = new BehaviorSubject<Account>(null);
+      
+        this.accountSubject = new BehaviorSubject<Account>(this.userValue);;
         this.account = this.accountSubject.asObservable();
     }
 
@@ -40,7 +41,7 @@ export class AccountService {
     logout() {
         this.http.post<any>(`${baseUrl}/revoke-token`, {}, { withCredentials: true }).subscribe();
         this.stopRefreshTokenTimer();
-        this.accountSubject.next(null);
+        this.accountSubject.next(this.userValue);
         this.router.navigate(['/account/login']);
     }
 
@@ -81,11 +82,11 @@ export class AccountService {
         return this.http.get<Account>(`${baseUrl}/${id}`);
     }
     
-    create(params) {
+    create(params: any) {
         return this.http.post(baseUrl, params);
     }
     
-    update(id, params) {
+    update(id: any, params: any) {
         return this.http.put(`${baseUrl}/${id}`, params)
             .pipe(map((account: any) => {
                 // update the current account if it was updated
@@ -109,11 +110,11 @@ export class AccountService {
 
     // helper methods
 
-    private refreshTokenTimeout;
+    private refreshTokenTimeout: string | number | NodeJS.Timeout | undefined;
 
     private startRefreshTokenTimer() {
         // parse json object from base64 encoded jwt token
-        const jwtToken = JSON.parse(atob(this.accountValue.jwtToken.split('.')[1]));
+        const jwtToken = JSON.parse(atob(this.userValue.jwtToken.split('.')[1]));
 
         // set a timeout to refresh the token a minute before it expires
         const expires = new Date(jwtToken.exp * 1000);
