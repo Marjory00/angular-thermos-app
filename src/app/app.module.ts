@@ -7,8 +7,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 
-import { from } from 'rxjs';
-
 // used to create fake backend
 import {  fakeBackendProvider } from './_helpers';
 

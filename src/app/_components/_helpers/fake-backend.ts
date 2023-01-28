@@ -23,6 +23,12 @@ Observable<HttpEvent<any>> {
     const { url, method, headers, body } = requests;
     const alertService = this.alertService;
 
-    
+    return handleRoute();
+
+    function handleRoute() {
+        switch (true) {
+            
+        }
+    }
 
 }
